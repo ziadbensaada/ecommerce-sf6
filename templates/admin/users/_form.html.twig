@@ -1,0 +1,26 @@
+<div class="row w-25">
+    <div class="col">
+        {{ form_start(registrationForm) }}
+        <fieldset>
+            <legend class="mb-3f">My Identity</legend>
+            {{ form_row(registrationForm.firstname) }}
+            {{ form_row(registrationForm.lastname) }}
+            {{ form_row(registrationForm.email) }}
+        </fieldset>
+        
+        <fieldset class="mb-3">
+            <legend>My Coordinate</legend>
+            {{ form_row(registrationForm.address) }}
+            {{ form_row(registrationForm.zipcode) }}
+            {{ form_row(registrationForm.city) }}
+        </fieldset>
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.RGPDConsent) }}
+
+        <button type="submit" class="btn btn-primary btn-lg my-3">{{button_label|default('Register')}}</button>
+    {{ form_end(registrationForm) }}
+    </div>
+</div>
+</section>

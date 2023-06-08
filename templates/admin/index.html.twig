@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Administration  
+{% endblock %}
+
+{% block body %}
+{{parent()}}
+    <div class="container">
+        <div class="row">
+            {% include "_partial/_adminnav.html.twig" %}
+            <main class="col-9 border border-light bg-white p-2">
+                <h1>Administration</h1>
+            </main>
+        </div>
+    </div>
+{% endblock %}

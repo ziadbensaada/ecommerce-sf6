@@ -1,0 +1,66 @@
+<style>
+  /* CSS styling for the logo and navbar */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  img{
+    width: 23rem;
+  }
+  
+  .navbar {
+    background-color: #f8f9fa;
+    padding: 10px;
+  }
+  
+  .navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar li {
+    margin: 0 10px;
+  }
+  
+  .navbar a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .navbar a:hover {
+    color: #007bff;
+  }
+</style>
+<nav class="navbar">
+  <a href="{{ path('app_main') }}">
+    <img src="{{ asset('assets/images/logo.png') }}" alt="Logo">
+  </a>
+  <ul>
+    <li><a href="{{path('app_main')}}">Home</a></li>
+    {% if app.user %}
+        <li><a href="{{path('cart_index')}}">Cart</a></li>
+      {% if is_granted('ROLE_PRODUCT_ADMIN') %}
+        <li><a href="{{path('admin_index')}}">Administration</a></li>
+      {% else %}
+        <li><a href="{{path('app_my_account')}}">My Account</a></li>
+      {% endif %}
+      <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{path('app_logout')}}">Logout</a>
+      </li>
+    {% else %}
+      <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{path('app_login')}}">Login</a> 
+      </li> 
+      <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{path('app_register')}}">Register</a> 
+      </li> 
+{% endif %}
+  </ul>       
+</nav>

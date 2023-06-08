@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Products of Categorie{% endblock %}
+
+{% block body %}
+{{parent()}}
+
+<div class="example-wrapper">
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1>List of categorie product for {{category.name}}</h1>
+            </div>
+            {% for product in products.data %}
+                <div class="col-3 mb-3">
+                    <article class="card h-100" style="width: 18rem;">
+                        <img src="{{asset('assets/images/'~product.images[0].name)}}" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h2 class="card-title">{{product.name}}</h2>
+                            <p>{{product.description}}</p>
+                            <a href="{{path('products_details',{'slug':product.slug})}}" class="btn btn-primary">Show Detail</a>
+                            <a href="{{path('cart_add',{id:product.id})}}" class="btn btn-success">Add To Cart</a>
+                        </div>
+                    </article>
+                </div> 
+            {% endfor %}
+            {% set path = 'categorie_list' %}
+            {% set slug = category.slug %}
+            {% set pages = products.pages %}
+            {% set currentPage = products.page %}
+            {% include "_partial/_pagination.html.twig" %}
+        </section>
+    </main>
+</div>
+{% endblock %}

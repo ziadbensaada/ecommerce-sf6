@@ -1,0 +1,9 @@
+{{form_start(productForm)}}
+    {{form_row(productForm.name)}}
+    {{form_row(productForm.description)}}
+    {{form_row(productForm.categories)}}
+    {{form_row(productForm.price)}}
+    {{form_row(productForm.stock)}}
+    <button type="submit" class="btn btn-primary">{{button_label|default('Add')}}</button>
+    <a href="{{path('app_main')}}" class="btn btn-success">Home</a>
+{{form_end(productForm)}}

@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Categories List  
+{% endblock %}
+
+{% block body %}
+{{parent()}}
+    <div class="container">
+        <div class="row">
+            <main class="col-9 border border-light bg-white p-2">
+                <h1>Categories List</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Parent</th>
+                            <th>Slug</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for category in categories %}
+                            <tr>
+                                <td>{{category.id}}</td>
+                                <td>{{category.name}}</td>
+                                <td>
+                                    {% if category.parent is not null %}
+                                        {{category.parent.name}}
+                                    {% endif %} 
+                                </td>
+                                <td>{{category.slug}}</td>
+                                <td>{{category.categoriesorder}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+{% endblock %}

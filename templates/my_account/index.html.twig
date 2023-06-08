@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('assets/css/my_account.css')}}">
+{% endblock %}
+{% block title %}Your Account{% endblock %}
+
+{% block body %}
+{% include "_partial/_nav.html.twig" %}
+  <h1>Welcome, {{ user.firstname }} {{ user.lastname }}!</h1>
+
+  <h2>Account Information:</h2>
+  <ul>
+    <li>Email: {{ user.email }}</li>
+    <li>Roles: {{ user.roles | join(', ') }}</li>
+    <li>Address: {{ user.address }}</li>
+    <li>Zip Code: {{ user.zipcode }}</li>
+    <li>City: {{ user.city }}</li>
+    <li>Is Verified: {{ user.isverified ? 'Yes' : 'No' }}</li>
+  </ul>
+  <div class="text-center">
+      <a href="{{path('app_main')}}" class="btn btn-primary">Home</a>
+  </div>
+{% endblock %}

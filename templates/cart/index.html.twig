@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Products Cart{% endblock %}
+
+{% block body %}
+{% include "_partial/_nav.html.twig" %}
+{% include "_partial/_flash.html.twig" %}
+    <section class="bg-light p-3">
+        <h1>Your Cart</h1>
+    </section>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for element in dataCart %}
+                <tr>
+                    <td><img src="{{asset('assets/images/'~ element.product.images[0].name)}}" class="card-img-top" alt="" style="width: 5rem;"></td>
+                    <td>{{element.product.id}}</td>
+                    <td>{{element.product.name}}</td>
+                    <td>{{element.product.price}} $</td>
+                    <td>{{element.product.getCategories.name}}</td>
+                    <td>{{element.quantity}}</td>
+                    <td>{{element.quantity*element.product.price}} $</td>
+                    <td>
+                        <a href="{{path('cart_add',{id:element.product.id})}}" class="btn btn-success"><i class="bi bi-cart-plus"></i></a>
+                        <a href="{{path('cart_remove',{id:element.product.id})}}" class="btn btn-warning"><i class="bi bi-cart-dash"></i></a>
+                        <a href="{{path('cart_delete',{id:element.product.id})}}" class="btn btn-danger"><i class="bi bi-cart-x"></i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center" style="font-size:30px;font-weight:bold;">Your Cart Is Empty!</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <td colspan="6">Total</td>
+            <td class="class-end">{{total}} $</td>
+            <td>
+                <a href="{{path('cart_deleteAll')}}" class="btn btn-danger"><i class="bi bi-cart-x"></i></a>
+            </td>
+        </tfoot>
+    </table>
+{% endblock %}

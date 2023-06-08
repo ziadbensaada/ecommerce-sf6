@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}E-commerce{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{asset('assets/css/main_page.css')}}">
+{% endblock %}
+{% block body %}
+    {{ parent() }}
+    <main class="container">
+        <section class="row">
+            <div class="col-12">
+                <h1 style="margin-left:500px;font-size:40px;">Site E-commerce</h1>
+                <p style="margin-left:550px;">Welcome to our shop!</p>
+                <div class="row">
+                    {% for categorie in categories %}
+                        {% if categorie.parent is null %}
+                            <div class="col-12">
+                                <h2>{{ categorie.name }}</h2>
+                            </div>
+                        {% else %}
+                            <div class="col-md-4">
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <h3 class="card-title">{{ categorie.name }}</h3>
+                                        <a href="{{ path('categorie_list', { slug: categorie.slug }) }}" class="btn btn-primary">Show Products</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

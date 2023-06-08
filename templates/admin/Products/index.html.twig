@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Products List  
+{% endblock %}
+
+{% block body %}
+{{parent()}}
+    <div class="container">
+        <div class="row">
+            <main class="col-9 border border-light bg-white p-2">
+                <h1>Products List</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Category</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                            <tr>
+                                <td>{{product.id}}</td>
+                                <td>
+                                    <img src="{{asset('assets/images/'~product.images[0].name)}}" class="card-img-top" alt="" style="width: 18rem;">
+                                </td>
+                                <td>{{product.name}}</td>
+                                <td>{{product.price}}</td>
+                                <td>{{product.stock}}</td>
+                                <td>{{product.categories.name}}</td>
+                                <td>
+                                    <a href="{{path('admin_products_edit',{id:product.id})}}" class="btn btn-primary">Edit</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+{% endblock %}
