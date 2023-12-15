@@ -1,4 +1,4 @@
-#eCommerce-SF6
+eCommerce-SF6
 
 Empower your online business with eCommerce-SF6, a robust and feature-rich eCommerce platform built on PHP, Symfony, MySQL, and Bootstrap.
 
